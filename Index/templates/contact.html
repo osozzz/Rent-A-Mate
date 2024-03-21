@@ -71,7 +71,7 @@
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
                     <a href="/" class="logo">
-                        <h1>Rent A Mate</h1>
+                        <h1>Rent/A/Mate</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
@@ -130,6 +130,7 @@
         </div>
         <div class="col-lg-6">
           <form id="contact-form" action="" method="post">
+            {% csrf_token %}
             <div class="row">
               <div class="col-lg-12">
                 <fieldset>

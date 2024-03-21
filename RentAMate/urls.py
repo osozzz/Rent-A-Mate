@@ -24,4 +24,5 @@ urlpatterns = [
     path("", include("Core.urls")),
     path("", include("Property.urls")),
     path("", include("Renters.urls")),
+    path("", include("Publication.urls")),
 ]

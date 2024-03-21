@@ -11,7 +11,7 @@ def create_apartment(request):
             apartment = form.save(commit=False)
             apartment.owner = request.user
             apartment.save()
-            return redirect('create-post', pk=apartment.pk)
+            return redirect('core')
     else:
         form = ApartmentForm()
     return render(request, 'create_apartment.html', {'form': form})

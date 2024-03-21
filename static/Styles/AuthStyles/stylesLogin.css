@@ -17,7 +17,7 @@ main {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  background-color: #6bffbfd2;
+  background-color: #f3aa36d2;
   padding: 2rem;
   display: flex;
   align-items: center;
@@ -188,7 +188,7 @@ label {
   width: 120%;
   left: 100%;
   top: 0;
-  background-color: #6bffbfb2;
+  background-color: #e4b424bb;
   border-radius: 2rem;
   display: grid;
   grid-template-rows: auto 1fr;
@@ -387,7 +387,7 @@ html.w-mod-touch * {
 	backdrop-filter: blur(16px);
 	color: #fff;
 	background-color: rgba(255, 255, 255, 0.08);
-	border: 5px solid rgba(6, 240, 146, 0.3);
+	border: 5px solid rgba(240, 178, 6, 0.3);
 }
 
 .logo-link {
@@ -395,11 +395,11 @@ html.w-mod-touch * {
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	margin-top: 12px;
+	margin-top: 10px;
 }
 .logo {
-	width: 150px; /* Ajusta este valor a lo que necesites */
-	height: auto;
+	width: 70px; /* Ajusta este valor a lo que necesites */
+	height: 70px;
 }
 
 img {
