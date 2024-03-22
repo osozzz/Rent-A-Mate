@@ -1,18 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Posts, Reviews
+from Authentication.models import Data
 
 # Create your views here.
 def create_review_view(request, post_id):
+    post = get_object_or_404(Posts, pk=post_id)
+    data = get_object_or_404(Data, user=request.user)
+    is_saved = post in data.saved_posts.all()
+
     if request.method == 'POST':
-        # Obtén los datos de la revisión del cuerpo de la solicitud POST
         rating = request.POST.get('rating')
         comments = request.POST.get('comments')
         
-        # Verifica si se proporcionan tanto la calificación como los comentarios
         if rating and comments:
-            # Obtén la publicación asociada al ID dado
-            post = Posts.objects.get(pk=post_id)
-            # Crea una nueva instancia de revisión con los datos proporcionados
             review = Reviews.objects.create(
                 publisher=request.user,
                 post=post,
@@ -20,14 +20,18 @@ def create_review_view(request, post_id):
                 comments=comments
             )
             review.save()
-            # Redirecciona a alguna página, por ejemplo, a la página de detalles de la publicación
-            return redirect('create-review', post_id=post_id)
+            return redirect('publi-and-review', post_id=post_id)
+        elif 'save_post' in request.POST:
+            # Aquí es donde deberías manejar la lógica de guardar o quitar de favoritos
+            if not is_saved:
+                data.saved_posts.add(post)
+            else:
+                data.saved_posts.remove(post)
+            return redirect('publi-and-review', post_id=post_id)
         else:
-            # Si falta alguno de los datos requeridos, muestra un mensaje de error o redirecciona a alguna otra página
             return render(request, 'posts.html', {'message': 'Por favor, proporciona tanto la calificación como los comentarios.'})
     else:
-        # Si el método de solicitud no es POST, redirecciona a alguna otra página o muestra un mensaje de error
-        return render(request, 'posts.html')
+        return render(request, 'posts.html', {'post': post, 'is_saved': is_saved})
 
 def create_post(request):
     if request.method == 'POST':

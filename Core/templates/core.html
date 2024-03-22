@@ -1,1 +1,97 @@
-<h1>Aqui se mostraran las publicaciones del usuario</h1>
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Estilos para el dashboard y el área de visualización */
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+        .dashboard {
+            flex: 1;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .content {
+            flex: 2;
+            padding: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        .publication-card {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 10px;
+        }
+        .publication-image {
+            width: 150px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .publication-details {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <h2>Dashboard</h2>
+            <ul>
+                <li><a href="/create-apartment">Crear Apartamento</a></li>
+                <li><a href="/create-room">Crear Habitación</a></li>
+                <li><a href="/logout">Cerrar Sesión</a></li>
+                <li><a href="/create-post">Crear Publicación</a></li>
+                <li><a href="/property-list">Ver Publicaciones en Venta</a></li>
+                <li><a href="/create-card">Agregar Método de Pago</a></li>
+            </ul>
+        </div>
+
+        <!-- Área de visualización -->
+        <div class="content">
+            <div class="search-bar">
+                <form method="GET" action="/buscar-publicaciones">
+                    <input type="text" name="q" placeholder="Buscar Publicaciones">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
+            <div class="publications">
+                <!-- Aquí se cargarán las publicaciones -->
+                {% for post in posts %}
+                <a href="{% url 'publi-and-review' post.id %}">
+                    <div class="publication-card">
+                        {% if post.publication_type == 'Apartment' %}
+                        <img src="{{ post.apartment.image.url }}" alt="Imagen de Publicación" class="publication-image">
+                        <div class="publication-details">
+                            <p><strong>Tipo de Publicación:</strong> {{ post.publication_type }}</p>
+                            <p><strong>Ubicación:</strong> {{ post.apartment.location }}</p>
+                            <p><strong>Precio:</strong> {{ post.apartment.price }}</p>
+                            <p><strong>Disponibilidad:</strong> {% if post.availability %} Disponible {% else %} No Disponible {% endif %}</p>
+                        </div>
+                        {% elif post.publication_type == 'Room' %}
+                        <img src="{{ post.room.image.url }}" alt="Imagen de Publicación" class="publication-image">
+                        <div class="publication-details">
+                            <p><strong>Tipo de Publicación:</strong> {{ post.publication_type }}</p>
+                            <p><strong>Ubicación:</strong> {{ post.room.location }}</p>
+                            <p><strong>Precio:</strong> {{ post.room.price }}</p>
+                            <p><strong>Disponibilidad:</strong> {% if post.availability %} Disponible {% else %} No Disponible {% endif %}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

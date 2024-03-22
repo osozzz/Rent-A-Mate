@@ -41,7 +41,7 @@ def create_room(request):
             room = form.save(commit=False)
             room.owner = request.user
             room.save()
-            return redirect('create_post', pk=room.pk)
+            return redirect('create-post')
     else:
         form = RoomForm()
     return render(request, 'create_room.html', {'form': form})
