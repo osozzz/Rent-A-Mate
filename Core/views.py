@@ -5,3 +5,9 @@ from Publication.models import Posts
 def core_view(request):
     posts = Posts.objects.all()
     return render(request, 'core.html', {'posts': posts})
+
+def index_view(request):
+    return render(request, 'index.html')
+
+def properties_view(request):
+    return render(request, 'properties.html')

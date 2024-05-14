@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Publicación</title>
-</head>
-<body>
-    <h1>Crear Publicación</h1>
-    {% if message %}
-        <p>{{ message }}</p>
-    {% endif %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="text" name="publication_type" placeholder="Tipo de publicación (Apartment/Room)" required><br><br>
-        <input type="text" name="apartment_id" placeholder="ID del Apartamento (opcional)"><br><br>
-        <input type="text" name="room_id" placeholder="ID de la Habitación (opcional)"><br><br>
-        <textarea name="content" placeholder="Contenido de la publicación" required></textarea><br><br>
-        <input type="text" name="avaliability" placeholder="Disponibilidad"><br><br>
-        <input type="number" name="price" placeholder="Precio"><br><br>
-        <input type="submit" value="Crear Publicación">
-    </form>
-</body>
-</html>
+{% load static %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear Post</button>
+</form>

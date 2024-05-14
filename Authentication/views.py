@@ -20,20 +20,21 @@ def login(request):
 
 def register(request):
     if request.method == "POST":
-        fullName = request.POST['fullname']
+        full_name = request.POST['fullname']
         address = request.POST['address']
         username = request.POST['username']
         email = request.POST['email']
         phone = int(request.POST['phone'])
         password = request.POST['password']
-        savedPost = []
-        paymentInfo = []
-        orderHistory = []
-        saleList = []
         user = User.objects.create_user(username=username, password=password)
         user.save()
         auth.login(request, user)
-        data = Data(user=request.user, fullname=fullName, address=address, phone=phone, email=email, saved_posts=savedPost, payment_info=paymentInfo, order_history=orderHistory, sale_list=saleList)
+        data = Data(
+            user=request.user,
+            fullname=full_name,
+            address=address,
+            phone=phone,
+            email=email,)
         data.save()
         return redirect("core")
     return render(request, 'register.html')

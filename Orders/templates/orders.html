@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Orders</title>
+</head>
+<body>
+    <h1>All Orders</h1>
+    <div>
+        <a href="{% url 'filter_orders' user_id=user_id filter_by='shopper' %}">
+            <button{% if filter_type == 'shopper' %} style="background-color: #4CAF50;"{% endif %}>
+                Show Orders as Shopper
+            </button>
+        </a>
+        <a href="{% url 'filter_orders' user_id=user_id filter_by='seller' %}">
+            <button{% if filter_type == 'seller' %} style="background-color: #4CAF50;"{% endif %}>
+                Show Orders as Seller
+            </button>
+        </a>
+    </div>
+    <ul>
+        {% for order in user_orders %}
+            <li>
+                Order ID: {{ order.id }} <br>
+                Shopper: {{ order.shopper.username }} <br>
+                Seller: {{ order.seller.username }} <br>
+                <!-- Display other order information here -->
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

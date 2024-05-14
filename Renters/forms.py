@@ -1,12 +1,21 @@
 from django import forms
-from .models import Apartment, Room
+from .models import Acommodation
 
-class ApartmentForm(forms.ModelForm):
+class AcommodationForm(forms.ModelForm):
+    TYPO_CHOICES = (
+        ('Apartment', 'Apartment'),
+        ('Room', 'Room'),
+        ('Studio', 'Studio'),
+        ('House', 'House'),
+    )
+    typo = forms.ChoiceField(choices=TYPO_CHOICES)
     class Meta:
-        model = Apartment
-        fields = ['title', 'description', 'price', 'location', 'bedrooms', 'bathrooms', 'image']
-
-class RoomForm(forms.ModelForm):
-    class Meta:
-        model = Room
-        fields = ['title', 'description', 'price', 'location', 'bedrooms', 'bathrooms', 'image']
+        model = Acommodation
+        fields = ['title',
+                'typo', 
+                'description', 
+                'price', 
+                'location', 
+                'bedrooms', 
+                'bathrooms', 
+                'image']

@@ -1,30 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-from Renters.models import Apartment, Room
+from Renters.models import Acommodation
 
 # Create your models here.
 class Posts(models.Model):
-    PUBLICATION_CHOICES = [
-        ('Apartment', 'Apartment'),
-        ('Room', 'Room'),
-    ]
-    
     publisher = models.ForeignKey(User, on_delete=models.CASCADE)
-    publication_type = models.CharField(max_length=10, choices=PUBLICATION_CHOICES)
-    apartment = models.ForeignKey(Apartment, on_delete=models.CASCADE, null=True, blank=True)
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, null=True, blank=True)
-    content = models.TextField()
+    acommodation = models.ForeignKey(Acommodation, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     review = models.ForeignKey('Reviews', on_delete=models.CASCADE, null=True, blank=True)
     avaliability = models.BooleanField(default=True)
-    price = models.IntegerField()
-
-    def save(self, *args, **kwargs):
-        if self.publication_type == 'Apartment':
-            self.room = None
-        elif self.publication_type == 'Room':
-            self.apartment = None
-        super().save(*args, **kwargs)
+    def __str__(self):
+        return str(self.publisher)
 
 class Reviews(models.Model):
     publisher = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -32,3 +18,5 @@ class Reviews(models.Model):
     rating = models.PositiveIntegerField()
     comments = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return str(self.publisher)

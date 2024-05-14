@@ -1,47 +1,35 @@
 from django.shortcuts import render, redirect
-from .models import Apartment, Room
-from .forms import ApartmentForm, RoomForm
+from .models import Acommodation
+from .forms import AcommodationForm
 
 # Create your views here.
 
-def create_apartment(request):
+def create_acommodation(request):
     if request.method == 'POST':
-        form = ApartmentForm(request.POST, request.FILES)
+        form = AcommodationForm(request.POST, request.FILES)
         if form.is_valid():
-            apartment = form.save(commit=False)
-            apartment.owner = request.user
-            apartment.save()
+            acommodation = form.save(commit=False)
+            acommodation.owner = request.user
+            acommodation.save()
             return redirect('core')
     else:
-        form = ApartmentForm()
-    return render(request, 'create_apartment.html', {'form': form})
+        form = AcommodationForm()
+    return render(request, 'create_acommodation.html', {'form': form})
 
-def edit_apartment(request, pk):
-    apartment = Apartment.objects.get(pk=pk)
+def edit_acommodation(request, pk):
+    acommodation = Acommodation.objects.get(pk=pk)
     if request.method == 'POST':
-        form = ApartmentForm(request.POST, request.FILES, instance=apartment)
+        form = AcommodationForm(request.POST, request.FILES, instance=acommodation)
         if form.is_valid():
             form.save()
-            return redirect('create_post', pk=apartment.pk)
+            return redirect('create_post', pk=acommodation.pk)
     else:
-        form = ApartmentForm(instance=apartment)
-    return render(request, 'edit_apartment.html', {'form': form})
+        form = AcommodationForm(instance=acommodation)
+    return render(request, 'edit_acommodation.html', {'form': form})
 
-def delete_apartment(request, pk):
-    apartment = Apartment.objects.get(pk=pk)
+def delete_acommodation(request, pk):
+    acommodation = Acommodation.objects.get(pk=pk)
     if request.method == 'POST':
-        apartment.delete()
-        return redirect('apartment_list')
-    return render(request, 'delete_apartment.html', {'apartment': apartment})
-
-def create_room(request):
-    if request.method == 'POST':
-        form = RoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            room = form.save(commit=False)
-            room.owner = request.user
-            room.save()
-            return redirect('create-post')
-    else:
-        form = RoomForm()
-    return render(request, 'create_room.html', {'form': form})
+        acommodation.delete()
+        return redirect('core')
+    return render(request, 'delete_acommodation.html', {'acommodation': acommodation})

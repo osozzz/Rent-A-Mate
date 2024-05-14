@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Card</title>
+</head>
+<body>
+    <h1>Crear Nueva Tarjeta</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="card_name">Nombre de la Tarjeta:</label>
+        <input type="text" id="card_name" name="card_name" required><br><br>
+        
+        <label for="card_number">Número de Tarjeta:</label>
+        <input type="text" id="card_number" name="card_number" required><br><br>
+        
+        <label for="card_expire">Fecha de Expiración:</label>
+        <input type="text" id="card_expire" name="card_expire" placeholder="YYYY-MM-DD" required><br><br>
+        
+        <label for="card_cvc">CVC:</label>
+        <input type="text" id="card_cvc" name="card_cvc" required><br><br>
+        
+        <label for="card_type">Tipo de Tarjeta:</label>
+        <select id="card_type" name="card_type" required>
+            <option value="debit">Débito</option>
+            <option value="credit">Crédito</option>
+        </select><br><br>
+        
+        <button type="submit">Guardar Tarjeta</button>
+    </form>
+    
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>

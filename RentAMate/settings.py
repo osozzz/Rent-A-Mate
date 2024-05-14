@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7v1a5bp=a(_r(1o8q4sgkzcrwpri6)b#ij1ush3s(t9ssrc448
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['35.225.131.102']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,13 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Index',
     'Authentication',
     'Core',
-    'Property',
-    'Renters',
-    'Publication',
+    'FeedBack',
+    'Orders',
     'Payment',
+    'Property',
+    'Publication',
+    'Renters',
+    'Saved',
 ]
 
 MIDDLEWARE = [
@@ -59,10 +61,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'RentAMate.urls'
 
+TEMPLATE_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,8 +133,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = 'media/Utility/Public/'
+MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
