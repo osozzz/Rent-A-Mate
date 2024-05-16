@@ -4,6 +4,10 @@ from .forms import AcommodationForm
 
 # Create your views here.
 
+def show_acommodations(request):
+    accommodations = Acommodation.objects.all()
+    return render(request, 'properties.html', {'accommodations': accommodations})
+
 def create_acommodation(request):
     if request.method == 'POST':
         form = AcommodationForm(request.POST, request.FILES)
