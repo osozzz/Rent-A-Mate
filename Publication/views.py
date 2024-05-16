@@ -20,10 +20,11 @@ def property_details_view(request, post_id):
     data = get_object_or_404(Data, user=request.user)
     is_saved = post in data.saved_posts.all()
     reviews = Reviews.objects.filter(post=post)
+    
     if request.method == 'POST':
         rating = request.POST.get('rating')
         comments = request.POST.get('comments')
-        if rating and comments:
+        if rating and comments: 
             review = Reviews.objects.create(
                 publisher=request.user,
                 post=post,
@@ -40,5 +41,5 @@ def property_details_view(request, post_id):
                 data.saved_posts.remove(post)
             return redirect('publi-and-review', post_id=post_id)
         else:
-            return render(request, 'posts.html', {'message': 'Por favor, proporciona tanto la calificación como los comentarios.'})
-    return render(request, 'property-details.html', {'post': post, 'reviews': reviews, 'is_saved': is_saved})
+            return render(request, 'property_details.html', {'post': post_id}, {'message': 'Por favor, proporciona tanto la calificación como los comentarios.'})
+    return render(request, 'property_details.html', {'post': post}, {'reviews': reviews}, {'is_saved': is_saved})

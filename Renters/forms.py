@@ -17,5 +17,7 @@ class AcommodationForm(forms.ModelForm):
                 'price', 
                 'location', 
                 'bedrooms', 
-                'bathrooms', 
+                'bathrooms',
+                'parking_slots',
+                'area_m2',
                 'image']

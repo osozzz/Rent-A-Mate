@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block styles %}
+<!--<link rel="stylesheet" href="{% static 'Styles/PostStyles/stylesPost.css' %}"> -->
+{% endblock styles %}
+
 {% block content %}
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!---->
-  </head>
-
-<body>
   <div class="section properties">
     <div class="container">
       <ul class="properties-filter">
@@ -23,38 +18,39 @@
         <li>
           <a href="#!" data-filter=".str">Villa House</a>
         </li>
-        <li>
+        <li>  
           <a href="#!" data-filter=".rac">Penthouse</a>
         </li>
       </ul>
 
       <h1>Lista de Acommodations</h1>
       <ul>
-            
-      
-      <div class="row properties-box">
-        <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 adv">
-          <div class="item">
-            <a href="/post/<int:post_id>"><img src="{% static 'media/IndexMedia/property-01.jpg' %}" alt=""></a>
-            <span class="category">Luxury villa
-            </span>
-            <h6>$10.264.000.000</h6>
-            <h4><a href="/post/<int:post_id>">Street 51 #57-27, MedellÃ­n</a></h4>
-            <ul>
-              <li>Bedrooms: <span>10</span></li>
-              <li>Bathrooms: <span>8</span></li>
-              <li>Area: <span>545m2</span></li>
-              <li>Floor: <span>3</span></li>
-              <li>Parking: <span>6 spots</span></li>
-              <li>Parking: <span>6 spots</span></li>
-
-            </ul>
-            <div class="main-button">
-              <a href="/post/<int:post_id>">Visit</a>
+        
+      {% for post in posts %}
+        {% if post.avaliability %}
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-4 col-md-6">
+                <div class="item">
+                  <a href="/login"><img src="{{ post.acommodation.image.url }}" alt=""></a>
+                  <span class="category">{{ post.acommodation.typo }}</span>
+                  <h6>${{ post.acommodation.price }}</h6>
+                  <h4><a href="/login">{{ post.acommodation.location }}</a></h4>
+                  <ul>
+                    <li>Bedrooms: <span>{{ post.acommodation.bedrooms }}</span></li>
+                    <li>Bathrooms: <span>{{ post.acommodation.bathrooms }}</span></li>
+                    <li>Area: <span>{{ post.acommodation.area_m2 }}</span></li>
+                    <li>Parking: <span>{{ post.acommodation.parking_slots }}</span></li>
+                    <li>Publisher: <span>{{ post.publisher }}</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/post/{{ post.id }}/">Schedule a visit</a>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-
+        {% endif %}
+      {% endfor %}
         
       <div class="row">
         <div class="col-lg-12">
@@ -62,13 +58,10 @@
             <li><a href="#">1</a></li>
             <li><a class="is_active" href="#">2</a></li>
             <li><a href="#">3</a></li>
-            <li><a href="#">>></a></li>
+            <li><a href="#"></a></li>
           </ul>
         </div>
       </div>
     </div>
   </div>
-  </body>
-
-</html>
 {% endblock content %}

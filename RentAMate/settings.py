@@ -26,6 +26,14 @@ SECRET_KEY = 'django-insecure-7v1a5bp=a(_r(1o8q4sgkzcrwpri6)b#ij1ush3s(t9ssrc448
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 ALLOWED_HOSTS = []
 
 
@@ -52,6 +60,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
