@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block content %}
-  <div class="page-heading header-text">
+  <div class="page-heading header-text" style="background-image: url('{% static 'media/CoreMedia/Bg/page-heading-bg.jpg' %}')">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="#">Home</a>  /  Single Property</span>
+          <span class="breadcrumb"><a href="/">Rent A Mate</a></span>
           <h3>Single Property</h3>
         </div>
       </div>
@@ -17,14 +17,14 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <span class="category">{{ post.acommodation.title }}</span>
+          <span class="category">{{ post.acommodation.location }}</span>
           <div class="main-image">
             <img src="{{ post.acommodation.image.url }}" alt="">
           </div>
           <Thank class="main-content">
             <span class="category">{{ post.acommodation.typo }}</span>
             <span class="category">{{ post.publisher }}</span>
-            <h4>{{ post.acommodation.location }}</h4>
+            <h4>{{ post.acommodation.title }}</h4>
             {{ post.acommodation.description }}
             This is an {{ post.acommodation.typo }}, that counts with {{post.acommodation.area_m2}} squared meters, {{ post.acommodation.bedrooms}} bedrooms, {{ post.acommodation.bathrooms }} bathrooms and {{ post.acommodation.parking_slots}} parking slots.
           </div>
@@ -32,19 +32,19 @@
           <div class="info-table">
             <ul>
               <li>
-                <img src="{% static 'media/IndexMedia/info-icon-01.png' %}" alt="" style="max-width: 52px;">
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-01.png' %}" alt="" style="max-width: 52px;">
                 <h4>{{ post.acommodation.area_m2 }}<br><span>Total Flat Space</span></h4>
               </li>
               <li>
-                <img src="{% static 'media/IndexMedia/info-icon-02.png' %}" alt="" style="max-width: 52px;">
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-02.png' %}" alt="" style="max-width: 52px;">
                 <h4>Contract<br><span>Contract Ready</span></h4>
               </li>
               <li>
-                <img src="{% static 'media/IndexMedia/info-icon-03.png' %}" alt="" style="max-width: 52px;">
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-03.png' %}" alt="" style="max-width: 52px;">
                 <h4>Payment<br><span>Payment Process</span></h4>
               </li>
               <li>
-                <img src="{% static 'media/IndexMedia/info-icon-04.png' %}" alt="" style="max-width: 52px;">
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-04.png' %}" alt="" style="max-width: 52px;">
                 <h4>Safety<br><span>24/7 Under Control</span></h4>
               </li>
             </ul>
@@ -52,31 +52,46 @@
         </div>
       </div>
       <h4>Agregar Revisión:</h4>
-      <form method="POST" action="{% url 'publi-and-review' post.id %}">
+      <div class="col-lg-6">
+        <form method="POST" action="{% url 'publi-and-review' post.id %}">
           {% csrf_token %}
-          <input type="hidden" name="post_id" value="{{ post.id }}">
-          <label for="rating">Valoración:</label>
-          <input type="number" name="rating" id="rating" min="1" max="5" required>
-          <label for="comments">Comentarios:</label>
-          <textarea name="comments" id="comments" required></textarea>
-          <button type="submit">Agregar Revisión</button>
-      </form>
-      <!-- Revisión existente -->
-      {% if post.reviews.all %}
-        <h4>Comentarios y Valoraciones:</h4>
-        <ul>
-          {% for review in post.reviews.all %}
-            <li>
-              <p>Publicado por: {{ review.publisher }}</p>
-              <p>Valoración: {{ review.rating }}</p>
-              <p>Comentarios: {{ review.comments }}</p>
-              <p>Fecha de Publicación: {{ review.created_at }}</p>
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>No hay revisiones para esta publicación.</p>
-      {% endif %}
+          <div class="row">
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <div class="col-lg-12">
+              <fieldset>
+                <label for="rating">Rating:</label>
+                <textarea type="number" name="rating" id="rating" placeholder="1-5" min="1" max="5" required></textarea>
+              </fieldset>
+            </div>
+            <div class="col-lg-12">
+              <fieldset>
+                <label for="comments">Comments:</label>
+                <textarea name="comments" id="comments" placeholder="Your comments here..." required></textarea>
+              </fieldset>
+            <div class="col-lg-12">
+              <fieldset>
+                <button type="submit" id="submit" class="orange-button">Agregar Revision</button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
+        <!-- Revisión existente -->
+        {% if post.reviews.all %}
+          <h4>Comentarios y Valoraciones:</h4>
+          <ul>
+            {% for review in post.reviews.all %}
+              <li>
+                <p>Publicado por: {{ review.publisher }}</p>
+                <p>Valoración: {{ review.rating }}</p>
+                <p>Comentarios: {{ review.comments }}</p>
+                <p>Fecha de Publicación: {{ review.created_at }}</p>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No hay revisiones para esta publicación.</p>
+        {% endif %}
+      </div>
       <form method="POST" action="{% url 'publi-and-review' post.id %}">
         {% csrf_token %}
           {% if is_saved %}

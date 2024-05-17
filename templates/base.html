@@ -2,143 +2,170 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <!-- Head -->
-    <head>
-        <!-- Meta -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-        <!-- Title -->
-        <title>Rent A Mate: Find your perfect place</title>
-        <!-- Favicon -->
-        <link rel="icon" href="{% static 'media/Utility/Logotype/Rent-A-Mate_Logotype.ico' %}">
-        <!-- Font -->
+	<!-- Head -->
+	<head>
+		<!-- Meta -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<!-- Title -->
+		<title>Rent A Mate: Find your perfect place</title>
+		<!-- Favicon -->
+		<link rel="icon" href="{% static 'media/Utility/Logotype/Rent-A-Mate_Logotype.ico' %}">
+		<!-- Font -->
+		<!-- Bootstrap core CSS -->
+		<style>
+			.dropdown {
+				position: relative;
+				display: inline-block;
+		}
+		
+		.dropbtn {
+				background-color: #c37822;
+				color: white;
+				padding: 16px;
+				font-size: 16px;
+				border: none;
+				cursor: pointer;
+		}
+		
+		.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 160px;
+				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+				z-index: 1;
+		}
+		
+		.dropdown-content a {
+				color: black;
+				padding: 12px 16px;
+				text-decoration: none;
+				display: block;
+		}
+		
+		.dropdown-content a:hover {
+				background-color: #c37822;
+		}
+		
+		.dropdown:hover .dropdown-content {
+				display: block;
+		}
+		
+		.dropdown:hover .dropbtn {
+				background-color: #a67743;
+		}
+		</style>
+		{% block styles %}{% endblock styles %}
+		<link rel="stylesheet" href="{% static 'Styles/BaseStyles/templatemo-villa-agency.css' %}">
+		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+		<!-- Additional CSS Files -->
+		<link rel="stylesheet" href="{% static 'Styles/BaseStyles/fontawesome.css' %}">
+		<link rel="stylesheet" href="{% static 'Styles/BaseStyles/owl.css' %}">
+		<link rel="stylesheet" href="{% static 'Styles/BaseStyles/animate.css' %}">
+		<link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+		<!-- Style Block -->
+		<!-- Endblock -->
+	</head>
+	<!-- End Head -->
 
-        <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-        <!-- Additional CSS Files -->
-        <link rel="stylesheet" href="{% static 'Styles/BaseStyles/stylesBase.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/BaseStyles/fontawesome.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/BaseStyles/templatemo-villa-agency.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/BaseStyles/owl.css' %}">
-        <link rel="stylesheet" href="{% static 'Styles/BaseStyles/animate.css' %}">
-        <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-        <!-- Style Block -->
+	<!-- Body -->
+	<body>
+		<!-- Preloader -->
+		<div id="js-preloader" class="js-preloader">
+			<div class="preloader-inner">
+				<span class="dot"></span>
+				<div class="dots">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+		<!-- End Preloader -->
 
-        {% block styles %}{% endblock styles %}
-        <!---->
-    </head>
-    <!-- End Head -->
+		<!-- Header -->
+		<header class="header-area header-sticky">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<nav class="main-nav">
+							<!-- Logo -->
+							<a href="/" class="logo">
+								<img src="{% static 'media/Utility/Logotype/Rent-A-Mate_Logotype_Horizontal.png' %}" alt="" style="height:100px">
+							</a>
+							<!-- Menu Start -->
+							<ul class="nav">
+								<li><a href="/core" class="active">Home</a></li>
+								<li><a href="/properties">Properties</a></li>
+								<li><a href="/productos-aliados">Aliados</a></li>
+								<li><a href="/contact">Contact Us</a></li>
+								{% if user.is_authenticated %}
+									<div class="dropdown">
+										<button class="dropbtn">{{ user.username }}</button>
+										<div class="dropdown-content">
+												<a href="/saved">Saved Post</a>
+												<a href="/orders/shopper">Orders</a>
+												<a href="/cards">Payment Methods</a>
+												<a href="/create-acommodation">Create Accommodation</a>
+												<a href="/logout">Log Out</a>
+										</div>
+									</div>
+								{% else %}
+									<li><a href="/register"><i class="fa fa-user"></i> Sign up</a></li>
+									<li><a href="/login"><i class="fa fa-user"></i> Log in</a></li>
+								{% endif %}
+							</ul>
+							<a class='menu-trigger'>
+								<span>Menu</span>
+							</a>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- End Header -->
 
-    <!-- Body -->
-    <body>
-        <!-- Preloader -->
-        <div id="js-preloader" class="js-preloader">
-            <div class="preloader-inner">
-                <span class="dot"></span>
-                <div class="dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-        <!-- End Preloader -->
-        <div class="sub-header">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-md-8">
-                        <ul class="info">
-                            <li><i class="fa fa-envelope"></i> info@company.com</li>
-                            <li><i class="fa fa-map"></i> Medellín, Antioquia, CO. 050001</li>
-                            <li>
-                                <a href="#">
-                                    {% if user.is_authenticated %}
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                <i class="fa fa-user">!Welcome: </i> {{ user.username }} <b class="caret"></b>
-                                            </a>
-                                            <li><a href="/profile">Profile</a></li>
-                                            <li><a href="/saved">Saved</a></li>
-                                            <li><a href="/orders/shopper">Orders</a></li>
-                                            <li><a href="/create-acommodation">Create Post</a></li>
-                                            <li><a href="/logout">Log out</a></li>
-                                        </li>
-                                    {% else %}
-                                        <li><a href="/register"><i class="fa fa-user"></i> Sign up</a></li>
-                                        <li><a href="/login"><i class="fa fa-user"></i> Log in</a></li>
-                                    {% endif %}
-                                    <i class=""></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <ul class="">
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header -->
-        <header class="header-area header-sticky">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav class="main-nav">
-                            <!-- Logo -->
-                            <a href="/" class="logo">
-                                <h1>Rent/A/Mate</h1>
-                            </a>
-                            <!-- Menu Start -->
-                            <ul class="nav">
-                                <li><a href="/core" class="active">Home</a></li>
-                                <li><a href="/properties">Properties</a></li>
-                                <li><a href="/property-details">Property Details</a></li>
-                                <li><a href="/contact">Contact Us</a></li>
-                                {% if user.is_authenticated %}
-                                    <li class="">
-                                        <a href="#" class="" >
-                                            <i class="fa fa-user"></i> {{ user.username }} <b class=""></b>
-                                        </a>
-                                        <li><a href="/productos-aliados">Aliados</a></li>
-                                        <li><a href="/profile/favorites">Saved</a></li>
-                                        <li><a href="/orders/shopper">Orders</a></li>
-                                        <li><a href="/create-acommodation">Create Post</a></li>
-                                        <li><a href="/logout">Log out</a></li>		
+	<!-- Block Content -->
+	{% block content %} {% endblock content %}
+	<!-- End Block Content -->
 
-                                    </li>
-                                {% else %}
-                                    <li><a href="/register"><i class="fa fa-user"></i> Sign up</a></li>
-                                    <li><a href="/login"><i class="fa fa-user"></i> Log in</a></li>
-                                {% endif %}
-                            </ul>
-                            <a class='menu-trigger'>
-                                <span>Menu</span>
-                            </a>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </header>
-        {% block content %} 
-		{% endblock content %}					
+	<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="col-lg-12">
+					<p>Copyright © 2024 Alejandro Osorno, Samuel Garcia, Ltd. All rights reserved.</p>
+				</div>
+			</div>
+		</footer>
+		<!-- End Footer -->
 
-        <footer>
-            <div class="container">
-                <div class="col-lg-12">
-                    <p>Copyright © 2024 Alejandro Osorno, Samuel Garcia, Ltd. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Scripts -->
-        <!-- Bootstrap core JavaScript -->
-        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'Scripts/IndexScripts/isotope.min.js' %}"></script>
-        <script src="{% static 'Scripts/IndexScripts/owl-carousel.js' %}"></script>
-        <script src="{% static 'Scripts/IndexScripts/counter.js' %}"></script>
-        <script src="{% static 'Scripts/IndexScripts/custom.js' %}"></script>
-    </body>
+		<!-- Scripts -->
+		<!-- Bootstrap core JavaScript -->
+		<script>
+			window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+						var dropdowns = document.getElementsByClassName("dropdown-content");
+						for (var i = 0; i < dropdowns.length; i++) {
+								var openDropdown = dropdowns[i];
+								if (openDropdown.style.display === "block") {
+										openDropdown.style.display = "none";
+								}
+						}
+				}
+		}
+		</script>
+		{% block scripts %}{% endblock scripts %}
+		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<!-- Additional Scripts -->
+		<script src="{% static 'Scripts/IndexScripts/isotope.min.js' %}"></script>
+		<script src="{% static 'Scripts/IndexScripts/owl-carousel.js' %}"></script>
+		<script src="{% static 'Scripts/IndexScripts/counter.js' %}"></script>
+		<script src="{% static 'Scripts/IndexScripts/custom.js' %}"></script>
+		<!--Block Scripts-->
+		<!-- End Scripts-->
+	</body>
+	<!-- End Body -->
 </html>

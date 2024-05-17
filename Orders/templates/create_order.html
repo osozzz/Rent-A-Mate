@@ -1,14 +1,7 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Order</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-</head>
-<body>
+{% block content %}
     <div class="container">
         <h1>Create Order</h1>
         <form method="post" action="{% url 'create_order' post.id %}">
@@ -44,7 +37,9 @@
             <p>{{ message }}</p>
         {% endif %}
     </div>
+{% endblock content %}
 
+{% block scripts %}
     <script>
         document.getElementById('method').addEventListener('change', function () {
             var cardGroup = document.getElementById('card-group');
@@ -55,5 +50,4 @@
             }
         });
     </script>
-</body>
-</html>
+{% endblock scripts %}

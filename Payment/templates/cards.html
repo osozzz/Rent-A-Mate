@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Cards</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
     <header>
         <h1>Tus Tarjetas</h1>
       </header>
@@ -17,12 +13,13 @@
               <h2>{{ card.card_name }}</h2>
               <p>{{ card.card_type }}</p>
               <p><strong>Number:</strong> {{ card.card_number }}</p>
+              <a href="{% url 'create-card' %}">Agregar Tarjeta</a>
             </li>
             {% endfor %}
           </ul>
         {% else %}
         <p>No cards found.</p>
+        <a href="{% url 'create-card' %}">Agregar Tarjeta</a>
         {% endif %}
       </main>
-</body>
-</html>
+{% endblock content %}

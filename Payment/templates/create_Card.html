@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Card</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
     <h1>Crear Nueva Tarjeta</h1>
     <form method="POST">
         {% csrf_token %}
@@ -33,5 +29,4 @@
     {% if message %}
     <p>{{ message }}</p>
     {% endif %}
-</body>
-</html>
+{% endblock content %}

@@ -1,96 +1,198 @@
-
+{% extends "base.html" %}
 {% load static %}
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <style>
-        /* Estilos para el dashboard y el área de visualización */
-        .container {
-            display: flex;
-            flex-direction: row;
-        }
-        .dashboard {
-            flex: 1;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-        .content {
-            flex: 2;
-            padding: 20px;
-        }
-        .search-bar {
-            margin-bottom: 20px;
-        }
-        .publication-card {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            padding: 10px;
-        }
-        .publication-image {
-            width: 150px;
-            height: 100px;
-            margin-right: 20px;
-        }
-        .publication-details {
-            flex: 1;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Dashboard -->
-        <div class="dashboard">
-            <h2>Dashboard</h2>
-            <ul>
-                <li><a href="/create-acommodation">Create Acommodation</a></li>
-                <li><a href="/logout">Log Out</a></li>
-                <li><a href="/create-post">Create Post</a></li>
-                <li><a href="/properties">Show all the posts</a></li>
-                <li><a href="/create-card">Add payment method</a></li>
-            </ul>
-        </div>
 
-        <!-- Área de visualización -->
-        <div class="content">
-            <div class="search-bar">
-                <form method="GET" action="/buscar-publicaciones">
-                    <input type="text" name="q" placeholder="Buscar Publicaciones">
-                    <button type="submit">Buscar</button>
-                </form>
-            </div>
-            <div class="publications">
-                <!-- Aquí se cargarán las publicaciones -->
-                {% for post in posts %}
-                <a href="{% url 'publi-and-review' post.id %}">
-                    <div class="publication-card">
-                        {% if post.publication_type == 'Apartment' %}
-                        <img src="{{ post.apartment.image.url }}" alt="Imagen de Publicación" class="publication-image">
-                        <div class="publication-details">
-                            <p><strong>Tipo de Publicación:</strong> {{ post.publication_type }}</p>
-                            <p><strong>Ubicación:</strong> {{ post.apartment.location }}</p>
-                            <p><strong>Precio:</strong> {{ post.apartment.price }}</p>
-                            <p><strong>Disponibilidad:</strong> {% if post.availability %} Disponible {% else %} No Disponible {% endif %}</p>
-                        </div>
-                        {% elif post.publication_type == 'Room' %}
-                        <img src="{{ post.room.image.url }}" alt="Imagen de Publicación" class="publication-image">
-                        <div class="publication-details">
-                            <p><strong>Tipo de Publicación:</strong> {{ post.publication_type }}</p>
-                            <p><strong>Ubicación:</strong> {{ post.room.location }}</p>
-                            <p><strong>Precio:</strong> {{ post.room.price }}</p>
-                            <p><strong>Disponibilidad:</strong> {% if post.availability %} Disponible {% else %} No Disponible {% endif %}</p>
-                        </div>
-                        {% endif %}
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
+{% block content %}
+  <div class="main-banner">
+    <div class="owl-carousel owl-banner">
+      <div class="item item-1" style="background-image: url('{% static 'media/CoreMedia/Banners/banner-01.jpg' %}'); height: 900px; background-size: cover; background-position: center">
+        <div class="header-text">
+          <span class="category">Poblado, <em>Medellín</em></span>
+          <h2>Hurry!<br>Get the property for you</h2>
         </div>
+      </div>
+      <div class="item item-2" style="background-image: url('{% static 'media/CoreMedia/Banners/banner-02.jpg' %}')">
+        <div class="header-text">
+          <span class="category">Las Palmas, <em>Medellín</em></span>
+          <h2>Be Quick!<br>Get the best villa in town</h2>
+        </div>
+      </div>
+      <div class="item item-3" style="background-image: url('{% static 'media/CoreMedia/Banners/banner-03.jpg' %}')">
+        <div class="header-text">
+          <span class="category">Laureles, <em>Medellín</em></span>
+          <h2>Act Now!<br>Get the highest level penthouse</h2>
+        </div>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+
+  <div class="featured section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="left-image">
+            <img src="{% static 'media/CoreMedia/Additional/featured.jpg'  %}" alt="Featured">
+            <a href="/login"><img src="{% static 'media/CoreMedia/Icon/featured-icon.png' %}" alt="" style="max-width: 60px; padding: 0px;"></a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="section-heading">
+            <h6>| Featured</h6>
+            <h2>Best Appartment &amp; Town view</h2>
+          </div>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  The best offers ?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                Get <strong>the best accomodation</strong> possible for you and your friends and family. Rent A Mate provides you with the <a href="https://www.google.com/search?q=best+rooms+and+apartments" target="_blank">best rooms and apartments</a> in Medellín. Please tell your friends about it.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  How does this work ?
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Rent A Mate <strong>is a Project created</strong> by Alejandro Osorno and Samuel Garcia for the course "Special Topics in Systems Engineering". The project will be based on a <code>webapp</code> that helps students in the Medellín area to find their perfect place to live while they finish their studies.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Why is Rent A Mate the best ?
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  It is the best because it's <strong>personalization and adaptability</strong>, to be able to create better user experience and improve the quality of the service. It is also the best because it's <strong>innovation and creativity</strong>, to be able to create new and better ways to solve problems.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="info-table">
+            <ul>
+              <li>
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-01.png' %}" alt="" style="max-width: 52px;">
+                <h4>250 m2<br><span>Total Flat Space</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-02.png' %}" alt="" style="max-width: 52px;">
+                <h4>Contract<br><span>Contract Ready</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-03.png' %}" alt="" style="max-width: 52px;">
+                <h4>Payment<br><span>Payment Process</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'media/CoreMedia/Icon/info-icon-04.png' %}" alt="" style="max-width: 52px;">
+                <h4>Safety<br><span>24/7 Under Control</span></h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video section" style="background-image: url('{% static 'media/CoreMedia/Bg/video-bg.jpg' %}')">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>| Video View</h6>
+            <h2>Get Closer View & Different Feeling</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="video-frame">
+            <img src="{% static 'media/CoreMedia/Additional/video-frame.jpg' %}" alt="">
+            <a href="https://youtube.com" target="_blank"><i class="fa fa-play"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fun-facts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="34" data-speed="1000"></h2>
+                    <p class="count-text ">Buildings<br>Finished Now</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="12" data-speed="1000"></h2>
+                  <p class="count-text ">Years<br>Experience</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="24" data-speed="1000"></h2>
+                	<p class="count-text ">Awards<br>Won 2023</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="properties section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>| Properties</h6>
+            <h2>We Provide The Best Property You Like</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for post in posts|slice:":6" %}
+          <div class="col-lg-4 col-md-6">
+            <div class="item">
+              <a href="/post/{{ post.id }}/"><img src="{{ post.acommodation.image.url }}" alt=""></a>
+              <span class="category">{{ post.acommodation.typo}} </span>
+              <h6>${{post.acommodation.price}}</h6>
+              <h4><a href="/login">{{ post.acommodation.location }}</a></h4>
+              <ul>
+                <li>Bedrooms: <span>{{ post.acommodation.bedrooms }}</span></li>
+                <li>Bathrooms: <span>{{ post.acommodation.bathrooms }}</span></li>
+                <li>Area: <span>{{ post.acommodation.area_m2 }}</span></li>
+                <li>Floor: <span>3</span></li>
+                <li>Parking: <span>{{ post.acommodation.parking_slots }}</span></li>
+              </ul>
+              <div class="main-button">
+                <a href="/post/{{ post.id }}/">Schedule a visit</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

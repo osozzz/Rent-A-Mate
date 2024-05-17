@@ -309,72 +309,15 @@ Pre-loader Style
   border-radius: 50%;
 }
 
-
-
 /* 
 ---------------------------------------------
 Header Style
 --------------------------------------------- 
 */
 
-.sub-header {
-  background-color: #fff;
-  padding: 10px 0px;
-  border-bottom: 1px solid #eee;
-}
-
-.sub-header ul li {
-  display: inline-block;
-}
-
-.sub-header ul.social-links {
-  text-align: right;
-}
-
-.sub-header ul.social-links li {
-  margin-left: 8px;
-}
-
-.sub-header ul.social-links li a {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-color: #cdcdcd;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  color: #fff;
-  font-size: 14px;
-  transition: all .3s;
-}
-
-.sub-header ul.social-links li a:hover {
-  background-color: #f35525;
-}
-
-.sub-header ul.info li {
-  font-size: 14px;
-  color: #7a7a7a;
-  border-right: 1px solid #eee;
-  margin-right: 25px;
-  padding-right: 25px;
-}
-
-.sub-header ul.info li:last-child {
-  margin-right: 0px;
-  padding-right: 0px;
-  border-right: none;
-}
-
-.sub-header ul.info li i {
-  font-size: 20px;
-  color: #f35525;
-  margin-right: 8px;
-}
-
 .background-header {
-  background-color: #fff;
-  height: 80px!important;
+  background-color: #faf0e5;
+  height: 100px!important;
   position: fixed!important;
   top: 0!important;
   left: 0;
@@ -388,8 +331,8 @@ Header Style
 
 .header-area {
   position: relative;
-  background-color: #fff;
-  height: 100px;
+  background-color: #faf0e5;
+  height: 120px;
   z-index: 100;
   -webkit-transition: all .5s ease 0s;
   -moz-transition: all .5s ease 0s;
@@ -501,7 +444,6 @@ Header Style
 .header-area .main-nav .nav li a.active {
   color: #f35525;
 }
-
 
 .background-header .main-nav .nav li a.active {
   color: #f35525;
@@ -660,6 +602,7 @@ Header Style
     position: absolute;
     left: 30px;
     top: 0px;
+    height: auto;
   }
   .background-header .main-nav .logo {
     top: 0px;
@@ -743,18 +686,6 @@ Banner Style
   background-size: cover;
   padding: 220px 20% 320px 20%;
   margin-top: 0px;
-}
-
-.main-banner .item-1 {
-  background-image: url(banner-01.jpg);
-}
-
-.main-banner .item-2 {
-  background-image: url(banner-02.jpg);
-}
-
-.main-banner .item-3 {
-  background-image: url(banner-03.jpg);
 }
 
 .main-banner .item span.category {
@@ -959,7 +890,6 @@ Video Style
 */
 
 .video {
-  background-image: url(video-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1053,100 +983,6 @@ Fun Facts Style
   top: -25px;
 }
 
-
-/* 
----------------------------------------------
-Best Deal Style
---------------------------------------------- 
-*/
-
-.best-deal {
-  background-color: #fafafa;
-  padding: 100px 0px;
-}
-
-.best-deal .tab-content img {
-  padding: 0px 45px;
-}
-
-.best-deal .tabs-content .nav-link {
-  font-size: 16px;
-  font-weight: 500;
-  background-color: #1e1e1e !important;
-  border-radius: 5px;
-  height: 50px;
-  line-height: 50px;
-  display: inline-block;
-  padding: 0px 25px;
-  color: #fff;
-}
-
-.best-deal .tabs-content .nav-tabs .nav-link.active {
-  background-color: #f35525 !important;
-  color: #fff;
-}
-
-.best-deal .tabs-content ul.nav-tabs {
-  border-bottom: none !important;
-  margin-bottom: 80px;
-  align-items: end;
-  justify-content: end;
-  margin-top: -130px;
-}
-
-.best-deal .tabs-content ul.nav-tabs li {
-  padding-right: 0px;
-  border-right: none;
-  margin-left: 20px;
-}
-
-.best-deal .info-table {
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  padding: 35px 30px;
-}
-
-.best-deal .info-table ul li {
-  display: block;
-  margin-bottom: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid #eee;
-  text-align: left;
-  font-size: 15px;
-  color: #aaa;
-  font-weight: 400;
-}
-
-.best-deal .info-table ul li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.best-deal .info-table ul li span {
-  font-size: 20px;
-  color: #1e1e1e;
-  font-weight: 700;
-  float: right;
-  display: inline-block;
-}
-
-.best-deal .tabs-content {
-  padding: 0px;
-  background-color: transparent;
-}
-
-.best-deal .tabs-content h4 {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 30px;
-}
-
-.best-deal .icon-button {
-  margin-top: 30px;
-}
-
-
 /* 
 ---------------------------------------------
 Properties Style
@@ -1215,124 +1051,6 @@ Properties Style
   text-align: center;
 }
 
-
-/* 
----------------------------------------------
-Contact Style
---------------------------------------------- 
-*/
-
-.contact {
-  background-image: url(contact-bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  padding: 100px 0px 250px 0px;
-  position: relative;
-}
-
-.contact .section-heading h2 {
-  color: #fff;
-}
-
-.contact-content {
-  margin-top: -240px;
-  position: relative;
-  z-index: 1;
-}
-
-.contact-content #map {
-  border-radius: 10px;
-  margin-bottom: 60px;
-}
-
-.contact-content .item {
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  padding: 35px 30px;
-  background-color: #fff;
-}
-
-.contact-content .phone {
-  margin-right: 15px;
-}
-
-.contact-content .email {
-  margin-left: 15px;
-}
-
-.contact-content .item img {
-  float: left;
-  margin-right: 25px;
-  vertical-align: middle;
-}
-
-.contact-content .item h6 {
-  font-size: 20px;
-  font-weight: 600;
-  vertical-align: middle;
-}
-
-.contact-content .item h6 span {
-  font-size: 15px;
-  color: #aaaaaa;
-  font-weight: 400;
-}
-
-.contact-content #contact-form {
-  margin-left: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  padding: 35px 30px;
-  background-color: #fff;
-}
-
-.contact-content #contact-form label {
-  font-size: 15px;
-  color: #3a3a3a;
-  margin-bottom: 15px;
-}
-
-.contact-content #contact-form input {
-  width: 100%;
-  height: 44px;
-  border-radius: 22px;
-  background-color: #f6f6f6;
-  border: none;
-  margin-bottom: 30px;
-  font-size: 14px;
-  padding: 0px 15px;
-}
-
-.contact-content #contact-form textarea {
-  width: 100%;
-  height: 150px;
-  max-height: 180px;
-  border-radius: 22px;
-  background-color: #f6f6f6;
-  border: none;
-  margin-bottom: 40px;
-  font-size: 14px;
-  padding: 15px 15px;
-}
-
-.contact-content #contact-form button {
-  background-color: #1e1e1e;
-  height: 44px;
-  border-radius: 22px;
-  padding: 0px 20px;
-  color: #fff;
-  border: none;
-  font-size: 15px;
-  font-weight: 500;
-  transition: all .5s;
-}
-
-.contact-content #contact-form button:hover {
-  background-color: #f35525;
-}
-
-
 /* 
 ---------------------------------------------
 Footer Style
@@ -1376,7 +1094,6 @@ Page Header Style
 */
 
 .page-heading {
-  background-image: url(page-heading-bg.jpg);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1491,6 +1208,8 @@ Single Page Style
 
 .single-property .main-image img {
   float: none;
+  height: 700px;
+  width: 700px;
 }
 
 .single-property .main-content h4 {
