@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'Publication',
     'Renters',
     'Saved',
+    'Checkout',
+    'Allays',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +151,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAYPAL_CLIENT_ID = 'AbN91X1WCHA9NgwjpFFHicPH3knllzHfAl2tzI7vkVtv-QMsWl-bwe-kMR0nNPvkbUP21f0OpmfL0gQb'
+
+PAYPAL_CLIENT_SECRET = 'EEZuu0YbZfGyZxiG4d1kbh16jphTmPup16Sd-ndqfcfxuOcKDjwc80siCVE2OGtAUCqGI8w9tZr0UlQO'
+
+PAYPAL_MODE = 'sandbox'

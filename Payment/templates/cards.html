@@ -6,11 +6,23 @@
     <title>User Cards</title>
 </head>
 <body>
-    <h1>Tus Tarjetas</h1>
-    <ul>
-        {% for card in user_cards %}
-            <li>{{ card.card_name }} - {{ card.card_number }}</li>
-        {% endfor %}
-    </ul>
+    <header>
+        <h1>Tus Tarjetas</h1>
+      </header>
+      <main>
+        {% if cards %}
+          <ul>
+            {% for card in cards %}
+            <li>
+              <h2>{{ card.card_name }}</h2>
+              <p>{{ card.card_type }}</p>
+              <p><strong>Number:</strong> {{ card.card_number }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+        <p>No cards found.</p>
+        {% endif %}
+      </main>
 </body>
 </html>

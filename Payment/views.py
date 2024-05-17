@@ -15,29 +15,33 @@ def create_card(request):
         card_type = request.POST.get('card_type')
         # Verificar si se proporcionan todos los datos requeridos
         if card_number and card_expire and card_cvc and card_type and card_name:
-            # Crear una nueva instancia de tarjeta con los datos proporcionados
-            new_card = Card.objects.create(
-                card_name = card_name,
+            existing_card = data.payment_info.filter(
                 card_number=card_number,
                 card_expire=card_expire,
                 card_cvc=card_cvc,
                 card_type=card_type
-            )
-            card = get_object_or_404(Card, pk=card_name)
-            is_saved = card in data.payment_info.all()
-            # Guardar la nueva tarjeta en la base de datos
-            if not is_saved:
+            ).first()
+            if existing_card:
+                return render(request, url, {'message': 'Esta tarjeta ya se encuentra guardada en tu cuenta'})
+            else:
+                # Crear una nueva instancia de tarjeta con los datos proporcionados
+                new_card = Card.objects.create(
+                    card_name=card_name,
+                    card_number=card_number,
+                    card_expire=card_expire,
+                    card_cvc=card_cvc,
+                    card_type=card_type
+                )
+                # Guardar la nueva tarjeta en la base de datos
                 new_card.save()
                 data.payment_info.add(new_card)
                 return redirect('core')
-            else:
-                return render(request, url, {'message': 'Esta tarjeta ya se encuentra guardada en tu cuenta'})
         else:
             return render(request, url, {'message': 'Por favor, completa todos los campos.'})
     else:
         return render(request, url)
 
 def cards_list(request):
-    user_data = Data.objects.get(user=request.user)
-    cards = user_data.payment_info.all()
+    data = Data.objects.get(user=request.user)
+    cards = data.payment_info.all()
     return render(request, 'cards.html', {'cards': cards})

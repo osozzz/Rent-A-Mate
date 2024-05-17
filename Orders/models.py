@@ -7,7 +7,7 @@ from Payment.models import Card
 class Order(models.Model):
     STATUS_CHOICES = [
         ('On Hold', 'On Hold'),
-        ('Approve', 'Approve'),
+        ('Approved', 'Approved'),
         ('Denied', 'Denied'),
     ]
     PAYMENT_CHOICES = [

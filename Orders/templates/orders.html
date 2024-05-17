@@ -8,12 +8,12 @@
 <body>
     <h1>All Orders</h1>
     <div>
-        <a href="{% url 'filter_orders' user_id=user_id filter_by='shopper' %}">
+        <a href="{% url 'orders' filter_by='shopper' %}">
             <button{% if filter_type == 'shopper' %} style="background-color: #4CAF50;"{% endif %}>
                 Show Orders as Shopper
             </button>
         </a>
-        <a href="{% url 'filter_orders' user_id=user_id filter_by='seller' %}">
+        <a href="{% url 'orders' filter_by='seller' %}">
             <button{% if filter_type == 'seller' %} style="background-color: #4CAF50;"{% endif %}>
                 Show Orders as Seller
             </button>

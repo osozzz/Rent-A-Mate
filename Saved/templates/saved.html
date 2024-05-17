@@ -1,1 +1,31 @@
-<h1>Aqui se mostraran los post guardados</h1>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Posts</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <header>
+      <h1>Saved Posts</h1>
+    </header>
+    <main>
+      {% if saved %}
+      <ul>
+        {% for post in saved %}
+        <li>
+          <h2>{{ post.acommodation.title }}</h2>
+          <p>{{ post.acommodation.description }}</p>
+          <p><strong>Posted on:</strong> {{ post.created_at }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>No saved posts found.</p>
+      {% endif %}
+    </main>
+  </body>
+</html>

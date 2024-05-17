@@ -52,39 +52,42 @@
         </div>
       </div>
       <h4>Agregar Revisión:</h4>
-        <form method="POST" action="{% url 'publi-and-review' post.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="post_id" value="{{ post.id }}">
-            <label for="rating">Valoración:</label>
-            <input type="number" name="rating" id="rating" min="1" max="5" required>
-            <label for="comments">Comentarios:</label>
-            <textarea name="comments" id="comments" required></textarea>
-            <button type="submit">Agregar Revisión</button>
-        </form>
-        <!-- Revisión existente -->
-        {% if post.reviews.all %}
-          <h4>Comentarios y Valoraciones:</h4>
-          <ul>
-            {% for review in post.reviews.all %}
-              <li>
-                <p>Publicado por: {{ review.publisher }}</p>
-                <p>Valoración: {{ review.rating }}</p>
-                <p>Comentarios: {{ review.comments }}</p>
-                <p>Fecha de Publicación: {{ review.created_at }}</p>
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p>No hay revisiones para esta publicación.</p>
-        {% endif %}
-        <form method="POST" action="{% url 'publi-and-review' post.id %}">
+      <form method="POST" action="{% url 'publi-and-review' post.id %}">
           {% csrf_token %}
-            {% if is_saved %}
-              <button type="submit" name="save_post">Quitar de Favoritos</button>
-            {% else %}
-              <button type="submit" name="save_post">Agregar a Favoritos</button>
-            {% endif %}
-        </form>
+          <input type="hidden" name="post_id" value="{{ post.id }}">
+          <label for="rating">Valoración:</label>
+          <input type="number" name="rating" id="rating" min="1" max="5" required>
+          <label for="comments">Comentarios:</label>
+          <textarea name="comments" id="comments" required></textarea>
+          <button type="submit">Agregar Revisión</button>
+      </form>
+      <!-- Revisión existente -->
+      {% if post.reviews.all %}
+        <h4>Comentarios y Valoraciones:</h4>
+        <ul>
+          {% for review in post.reviews.all %}
+            <li>
+              <p>Publicado por: {{ review.publisher }}</p>
+              <p>Valoración: {{ review.rating }}</p>
+              <p>Comentarios: {{ review.comments }}</p>
+              <p>Fecha de Publicación: {{ review.created_at }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No hay revisiones para esta publicación.</p>
+      {% endif %}
+      <form method="POST" action="{% url 'publi-and-review' post.id %}">
+        {% csrf_token %}
+          {% if is_saved %}
+            <button type="submit" name="save_post">Quitar de Favoritos</button>
+          {% else %}
+            <button type="submit" name="save_post">Agregar a Favoritos</button>
+          {% endif %}
+      </form>
+      <form method="get" action="{% url 'create_order' post.id %}">
+        <button type="submit">Arrendar</button>
+      </form>
     </div>
   </div>
 {% endblock content %}
