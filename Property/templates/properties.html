@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block styles %}
-<!--<link rel="stylesheet" href="{% static 'Styles/PostStyles/stylesPost.css' %}"> -->
-{% endblock styles %}
-
 {% block content %}
   <div class="section properties">
     <div class="container">
@@ -42,6 +38,7 @@
                     <li>Area: <span>{{ post.acommodation.area_m2 }}</span></li>
                     <li>Parking: <span>{{ post.acommodation.parking_slots }}</span></li>
                     <li>Publisher: <span>{{ post.publisher }}</span></li>
+                    <li>Available: <span>{{ post.id }}</span></li>
                   </ul>
                   <div class="main-button">
                     <a href="/post/{{ post.id }}/">Schedule a visit</a>
@@ -58,7 +55,7 @@
             <li><a href="#">1</a></li>
             <li><a class="is_active" href="#">2</a></li>
             <li><a href="#">3</a></li>
-            <li><a href="#"></a></li>
+            <li><a href="#">4</a></li>
           </ul>
         </div>
       </div>
