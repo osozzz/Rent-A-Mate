@@ -15,7 +15,7 @@ def create_acommodation(request):
             acommodation = form.save(commit=False)
             acommodation.owner = request.user
             acommodation.save()
-            return redirect('core')
+            return redirect('create-post', acommodation.id)
     else:
         form = AcommodationForm()
     return render(request, 'create_acommodation.html', {'form': form})
